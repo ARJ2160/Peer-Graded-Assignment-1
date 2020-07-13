@@ -1,90 +1,113 @@
+/******************************************************************************
+ * Copyright (C) 2017 by Alex Fosdick - University of Colorado
+ *
+ * Redistribution, modification or use of this software in source or binary
+ * forms is permitted as long as the files maintain this copyright. Users are 
+ * permitted to modify this and use it to learn about the field of embedded
+ * software. Alex Fosdick and the University of Colorado are not liable for any
+ * misuse of this material. 
+ *
+ *****************************************************************************/
+/**
+ * @file <stats.c> 
+ * @brief <This program calculates the statistics of given array>
+ *
+ * <The program calculates the Maximum,minimum,mean,median etc of the given array and also display arrays in original and descendng form>
+ *
+ * @author <Atharva Joshi>
+ * @date <13th July 2020 >
+ *
+ */
 #include <stdio.h>
 #define SIZE (40)
 void main()
 {
-
+	int i;
   unsigned char test[SIZE] = { 34, 201, 190, 154,   8, 194,   2,   6,
                               114, 88,   45,  76, 123,  87,  25,  23,
                               200, 122, 150, 90,   92,  87, 177, 244,
                               201,   6,  12,  60,   8,   2,   5,  67,
                                 7,  87, 250, 230,  99,   3, 100,  90};
-/* Other Variable Declarations Go Here */
-int median,mean,max,min,i,j,a,med,m1,m2,m3;
 int n=sizeof(test);
-/* Add other Implementation File Code Here */
+//All Implementation goes here
+  print_array(test,n);//For printing array
+    printf("\n");
+   for(i=0;i<=n-1;i++)
+    {
+        printf("%u\t", test[i]);
+    }
+    print_statistics(test,n);//For printing statistics
 
-void print_array()
+    sort(test,n);//For print in descending order
+	printf("\n");
+    for(i=0;i<n;i++)
+     {
+        printf("%u\t", test[i]);
+     }
+}//main ends
+void print_statistics(unsigned char test[SIZE],int n)//To find statistics
 {
-  for(i=0;i<n;i++)
-  {
-  printf("%u\n", test[i]);
-  }
-}//To print the array
-int find_median()
+  find_median(test,n);
+  find_mean(test,n);
+  find_maximum(test,n);
+  find_minimum(test,n);
+}//print_statistics ends
+void find_median(unsigned char test[SIZE],int n)//To find median
 {
-  void swap(int p,int q) {
-   int t;
-
-   t=p;
-   p=q;
-   q=t;
-}
-void sort(unsigned char test[SIZE],int n) {
-   for(i = 0;i < n-1;i++) {
-      for(j = 0;j < n-i-1;j++) {
+    int temp,i,j;
+    for(i = 0;i < n-1;i++)
+    {
+      for(j = 0;j < n-i-1;j++)
+      {
          if(test[j] > test[j+1])
-            swap(test[j],test[j+1]);
+            {
+            	temp=test[j];
+            	test[j]=test[j+1];
+            	test[j+1]=temp;
+            }
       }
    }
-}
-    sort(test,n);
-    n = (test[(n-1)/2] + test[n/2])/2;
-   return med;
-}//To find median of given array
-int find_mean()
+  printf("\nMedian=%u",(test[(n-1)/2]+test[n/2])/2);
+}//find_median ends
+void sort(unsigned char test[SIZE],int n)//To sort in Descending order
 {
-  for(i=0;i<=n;i++)
-    {m1+=test[i];}
-    m1/=40;
-    return m1;
-}//To find mean
-int find_maximum()
-{
-  for(i = 0;i <= n;i++) {
-    m2=test[i];
-    if(m2<test[i+1])
-    m2=test[i+1];
-  }
-  return m2;
-}//To find the largest value
-int find_minimum()
- {
-  for(i = 0;i <= n;i ++){
-    m3=test[i];
-    if(m3>test[i+1])
-    m3=test[i+1];
-  }
-   return m3;
- }//To find the smallest value
- int sort_array()
- {
-  for (i = 0; i < n; ++i)
+int temp,i,j;
+   for(i = 0;i < n-1;i++)
+    {
+      for(j = 0;j < n-i-1;j++)
       {
-          for (j = i + 1; j < n; ++j)
-           {
-                if (test[i] < test[j])
-                {
-                    a = test[i];
-                    test[i] = test[j];
-                    test[j] = a;
-                }
-           }
+         if(test[j] < test[j+1])
+            {
+            	temp=test[j];
+            	test[j]=test[j+1];
+            	test[j+1]=temp;
+            }
       }
- }
- void print_statistics()
+   }
+   printf("\nArray in Descending Order=");
+}//sort ends
+void find_mean(unsigned char test[SIZE],int n)//To find mean
 {
-  median=med;
-  mean=find_mean();
-}
-printf(median);
-}
+	double m,mean,total=0.0;
+	for(int i=0;i<n;i++)
+	{
+		total+=test[i];
+	}
+	mean=total/n;
+	printf("\nMean=%f",mean);
+}//find_mean ends
+void find_maximum(unsigned char test[SIZE],int n)//To find maximum value
+{
+    int max;
+    printf("\nMaximum=%u",test[n-1]);
+}//find_maximum ends
+void find_minimum(unsigned char test[SIZE],int n)//To find minimum value
+{
+    int min;
+     printf("\nMinimum=%u",test[0]);
+}//find_minimum ends
+void print_array(unsigned char test[SIZE],int n)//To print original array
+{
+    int i;
+    printf("Original Array=");
+}//print_array ends
