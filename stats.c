@@ -2,14 +2,14 @@
  * Copyright (C) 2017 by Alex Fosdick - University of Colorado
  *
  * Redistribution, modification or use of this software in source or binary
- * forms is permitted as long as the files maintain this copyright. Users are 
+ * forms is permitted as long as the files maintain this copyright. Users are
  * permitted to modify this and use it to learn about the field of embedded
  * software. Alex Fosdick and the University of Colorado are not liable for any
- * misuse of this material. 
+ * misuse of this material.
  *
  *****************************************************************************/
 /**
- * @file <stats.c> 
+ * @file <stats.c>
  * @brief <This program calculates the statistics of given array>
  *
  * <The program calculates the Maximum,minimum,mean,median etc of the given array and also display arrays in original and descendng form>
@@ -19,6 +19,7 @@
  *
  */
 #include <stdio.h>
+#include <math.h>
 #define SIZE (40)
 void main()
 {
@@ -37,6 +38,7 @@ int n=sizeof(test);
         printf("%u\t", test[i]);
     }
     print_statistics(test,n);//For printing statistics
+    printf("\n");
 
     sort(test,n);//For print in descending order
 	printf("\n");
@@ -67,7 +69,7 @@ void find_median(unsigned char test[SIZE],int n)//To find median
             }
       }
    }
-  printf("\nMedian=%u",(test[(n-1)/2]+test[n/2])/2);
+  printf("\nThe Median of the array is=%u",(test[(n-1)/2]+test[n/2])/2);
 }//find_median ends
 void sort(unsigned char test[SIZE],int n)//To sort in Descending order
 {
@@ -88,23 +90,24 @@ int temp,i,j;
 }//sort ends
 void find_mean(unsigned char test[SIZE],int n)//To find mean
 {
-	double m,mean,total=0.0;
+	double mean,total=0.0;
 	for(int i=0;i<n;i++)
 	{
 		total+=test[i];
 	}
 	mean=total/n;
-	printf("\nMean=%f",mean);
+	mean=floor(mean);
+	printf("\nThe Mean of the array is=%f",mean);
 }//find_mean ends
 void find_maximum(unsigned char test[SIZE],int n)//To find maximum value
 {
     int max;
-    printf("\nMaximum=%u",test[n-1]);
+    printf("\nThe Maximum value from the array is=%u",test[n-1]);
 }//find_maximum ends
 void find_minimum(unsigned char test[SIZE],int n)//To find minimum value
 {
     int min;
-     printf("\nMinimum=%u",test[0]);
+     printf("\nThe Minimum value from the array is=%u",test[0]);
 }//find_minimum ends
 void print_array(unsigned char test[SIZE],int n)//To print original array
 {
