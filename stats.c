@@ -21,6 +21,7 @@
 #include <stdio.h>
 #include <math.h>
 #define SIZE (40)
+#include "stats.h"
 void main()
 {
 	int i;
@@ -37,6 +38,7 @@ int n=sizeof(test);
     {
         printf("%u\t", test[i]);
     }
+    printf("\n");
     print_statistics(test,n);//For printing statistics
     printf("\n");
 
@@ -52,8 +54,8 @@ void print_statistics(unsigned char test[SIZE],int n)//To find statistics
   find_median(test,n);
   find_mean(test,n);
   find_maximum(test,n);
-  find_minimum(test,n);
-}//print_statistics ends
+  find_minimum(test,n);printf("\n");
+}//print_statistics end
 void find_median(unsigned char test[SIZE],int n)//To find median
 {
     int temp,i,j;
