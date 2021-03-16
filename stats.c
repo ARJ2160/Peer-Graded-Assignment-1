@@ -32,16 +32,15 @@ void main()
 int n=sizeof(test);
 //All Implementation goes here
   print_array(test,n);//For printing array
-    printf("\n");
-   for(i=0;i<=n-1;i++)
-    {
-        printf("%u\t", test[i]);
-    }
-    printf("\n");
-    print_statistics(test,n);//For printing statistics
-    printf("\n");
-
-    sort(test,n);//For print in descending order
+  printf("\n");
+  for(i=0;i<=n-1;i++)
+  {
+     printf("%u\t", test[i]);
+  }
+  printf("\n");
+  print_statistics(test,n);//For printing statistics
+  printf("\n"); 
+  sort(test,n);//For print in descending order
 	printf("\n");
     for(i=0;i<n;i++)
      {
@@ -74,19 +73,19 @@ void find_median(unsigned char test[SIZE],int n)//To find median
 }//find_median ends
 void sort(unsigned char test[SIZE],int n)//To sort in Descending order
 {
-int temp,i,j;
-   for(i = 0;i < n-1;i++)
-    {
-      for(j = 0;j < n-i-1;j++)
+  int temp,i,j;
+    for(i = 0;i < n-1;i++)
       {
-         if(test[j] < test[j+1])
-            {
-            	temp=test[j];
-            	test[j]=test[j+1];
-            	test[j+1]=temp;
-            }
-      }
-   }
+        for(j = 0;j < n-i-1;j++)
+        {
+          if(test[j] < test[j+1])
+              {
+                temp=test[j];
+                test[j]=test[j+1];
+                test[j+1]=temp;
+              }
+        }
+    }
    printf("\nArray in Descending Order=");
 }//sort ends
 void find_mean(unsigned char test[SIZE],int n)//To find mean
@@ -101,12 +100,10 @@ void find_mean(unsigned char test[SIZE],int n)//To find mean
 }//find_mean ends
 void find_maximum(unsigned char test[SIZE],int n)//To find maximum value
 {
-    int max;
     printf("\nThe Maximum value from the array is=%u",test[n-1]);
 }//find_maximum ends
 void find_minimum(unsigned char test[SIZE],int n)//To find minimum value
 {
-    int min;
      printf("\nThe Minimum value from the array is=%u",test[0]);
 }//find_minimum ends
 void print_array(unsigned char test[SIZE],int n)//To print original array
